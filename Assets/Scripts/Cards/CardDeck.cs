@@ -12,6 +12,7 @@ public class CardDeck : MonoBehaviour
     }
 
     [SerializeField] private List<Card> _cardTypes = new List<Card>();
+
     private List<Card> _deck = new List<Card>();
     private List<Card> _discardPile = new List<Card>();
     private int _totalCards = 50;
@@ -26,7 +27,7 @@ public class CardDeck : MonoBehaviour
         for (int i = 0; i < _totalCards; i++)
         {
             _deck.Add(_cardTypes[Random.Range(0, _cardTypes.Count - 1)]);
-            Debug.Log(_deck[i].CardType);
+            //Debug.Log(_deck[i].CardType);
         }
     }
 
