@@ -11,6 +11,8 @@ public class Card : MonoBehaviour
     private BoxCollider _collider;
     private bool _isAnimating = false;
 
+    private float _initPosY;
+
     void Awake()
     {
         _collider = GetComponent<BoxCollider>();
@@ -18,6 +20,8 @@ public class Card : MonoBehaviour
 
     void Start()
     {
+        _initPosY = transform.position.y;
+
         UpdateStats();
     }
 
@@ -30,13 +34,13 @@ public class Card : MonoBehaviour
     void OnMouseEnter()
     {
         if (GameManager.GetInstance.IsPCTurn) return;
-        transform.DOMoveY(4.1f, 0.3f);
+        transform.DOMoveY(0.1f, 0.3f).SetRelative();
     }
 
     void OnMouseExit()
     {
         if (GameManager.GetInstance.IsPCTurn) return;
-        transform.DOMoveY(4.07f, 0.3f);
+        transform.DOMoveY(_initPosY, 0.3f);
     }
 
     public void Use()
