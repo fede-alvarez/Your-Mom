@@ -7,5 +7,5 @@ public class CardStats : ScriptableObject
     public CardDeck.CardTypes CardType;
     public int Damage;
     public int Cost;
-    public Sprite Art;
+    public string description;
 }

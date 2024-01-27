@@ -5,24 +5,29 @@ using DG.Tweening;
 public class Card : MonoBehaviour
 {
     [SerializeField] private CardStats _cardStats;
-
     [Header("GUI")]
     [SerializeField] private TMP_Text _cardDamageLabel;
-    private BoxCollider _collider;
-    private bool _isAnimating = false;
 
-    private float _initPosY;
-
-    void Awake()
-    {
-        _collider = GetComponent<BoxCollider>();
-    }
+    private float _initPositionY;
+    private bool _isSelected = false;
 
     void Start()
     {
-        _initPosY = transform.position.y;
+        _initPositionY = transform.position.y;
 
         UpdateStats();
+    }
+
+    void OnMouseEnter()
+    {
+        if (_isSelected) return;
+        transform.DOMoveY(0.1f, 0.3f).SetRelative();
+    }
+
+    void OnMouseExit()
+    {
+        if (_isSelected) return;
+        transform.DOMoveY(_initPositionY, 0.3f);
     }
 
     void OnMouseDown()
@@ -31,36 +36,23 @@ public class Card : MonoBehaviour
         Use();
     }
 
-    void OnMouseEnter()
+    private void Use()
     {
-        if (GameManager.GetInstance.IsPCTurn) return;
-        transform.DOMoveY(0.1f, 0.3f).SetRelative();
+        if (_isSelected) return;
+        print(gameObject.name);
+        _isSelected = true;
+        transform.DOMoveY(0.3f, 0.3f).SetRelative().OnComplete(Deactivate);
     }
 
-    void OnMouseExit()
+    private void Deactivate()
     {
-        if (GameManager.GetInstance.IsPCTurn) return;
-        transform.DOMoveY(_initPosY, 0.3f);
+        gameObject.SetActive(false);
     }
 
-    public void Use()
-    {
-        _collider.enabled = false;
-        print(_cardStats.CardName + " -> " + _cardStats.Damage);
-        transform.DOMoveY(4.15f, 0.5f).OnComplete(Kill);
-    }
-
-    public void Kill()
-    {
-        Destroy(gameObject);
-    }
-
-    #region Visuals
     private void UpdateStats()
     {
         _cardDamageLabel.text = _cardStats.Damage.ToString();
     }
-    #endregion
 
     public CardDeck.CardTypes CardType => _cardStats.CardType;
 }

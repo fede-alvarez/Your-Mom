@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 238195645, guid: 3ef9b8ad005d83042b61cb8b463fa49c, type: 3}
+  m_Sprite: {fileID: 804256142, guid: a54d3b725a28cef4d8ab249ca3bde684, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 1480769934438249899}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 82066d29fc88a2448a76f08628e5eb89, type: 2}
+  m_Controller: {fileID: 9100000, guid: 816746742669e2342a5f4a9dc5c28105, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -116,12 +116,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 488359786240219425, guid: fe5f28f80b1a717478f66bf83d0de2a4, type: 3}
       propertyPath: m_Name
-      value: YourMomCard
+      value: NoYou
       objectReference: {fileID: 0}
     - target: {fileID: 499775232814102784, guid: fe5f28f80b1a717478f66bf83d0de2a4, type: 3}
       propertyPath: _cardStats
       value: 
-      objectReference: {fileID: 11400000, guid: 43e85ac12fb7bb4448260fec83e1834f, type: 2}
+      objectReference: {fileID: 11400000, guid: 37522d03e65869d47a166f903b30cfbe, type: 2}
     - target: {fileID: 1925347725643305812, guid: fe5f28f80b1a717478f66bf83d0de2a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
