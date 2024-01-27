@@ -17,5 +17,11 @@ public static class EventManager
 
     public static event UnityAction EnemyDamaged;
     public static void OnEnemyDamaged() => EnemyDamaged?.Invoke();
+
+    public static event UnityAction PlayerWon;
+    public static void OnPlayerWon() => PlayerWon?.Invoke();
+
+    public static event UnityAction PlayerLost;
+    public static void OnPlayerLost() => PlayerLost?.Invoke();
     #endregion
 }
