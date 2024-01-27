@@ -38,12 +38,16 @@ public class GameManager : MonoBehaviour
 
     public void SetPlayersTurn()
     {
+        print("Players Turn");
         _currentTurn = Turn.Player;
+        EventManager.OnTurnChanged(Turn.Player);
     }
 
     public void SetEnemysTurn()
     {
+        print("Enemy Turn");
         _currentTurn = Turn.PC;
+        EventManager.OnTurnChanged(Turn.PC);
     }
 
     public bool IsPCTurn => _currentTurn == Turn.PC;

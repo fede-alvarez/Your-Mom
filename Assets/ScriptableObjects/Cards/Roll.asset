@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Roll
   m_EditorClassIdentifier: 
   CardName: Roll
-  CardType: 2
+  CardType: 0
   Damage: 1
   Cost: 1
   description: 

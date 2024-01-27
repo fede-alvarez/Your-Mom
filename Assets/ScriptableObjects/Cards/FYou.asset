@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FYou
   m_EditorClassIdentifier: 
   CardName: FYou
-  CardType: 1
+  CardType: 0
   Damage: 1
   Cost: 1
   description: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Actually
   m_EditorClassIdentifier: 
   CardName: Actually
-  CardType: 2
+  CardType: 0
   Damage: 1
   Cost: 1
   description: 

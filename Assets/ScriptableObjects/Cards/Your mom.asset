@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Your mom
   m_EditorClassIdentifier: 
   CardName: Your mom
-  CardType: 1
+  CardType: 0
   Damage: 1
   Cost: 1
-  Art: {fileID: 21300000, guid: 0750d919de68fa047814cbf04eafdcdc, type: 3}
+  description: 
