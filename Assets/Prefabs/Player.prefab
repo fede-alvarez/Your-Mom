@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 824188948539089431}
   - component: {fileID: 8457585268629980859}
   - component: {fileID: 5864871215237254250}
+  - component: {fileID: 4156173060506787175}
   m_Layer: 0
   m_Name: BarFill
   m_TagString: Untagged
@@ -301,6 +302,21 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4156173060506787175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2961033989752816865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2a765faa8660a46b99278b6ecfb1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageReceived: 0
+  barFill: {fileID: 5864871215237254250}
+  player: {fileID: 7653005802524359676}
 --- !u!1 &4148187305712777500
 GameObject:
   m_ObjectHideFlags: 0

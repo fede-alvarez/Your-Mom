@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class Harlequin : BaseEnemy
 {
+    [SerializeField] private int _reputation = 100;
+    public int GetReputation()
+    {
+        return _reputation;
+    }
+    public void SetReputation(int re)
+    {
+        print("setting reputation of harlequin to: " + re);
+        _reputation = re;
+    }
     public enum Object
     {
         StopSign,

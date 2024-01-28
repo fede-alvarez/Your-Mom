@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1882644620428761269}
   - component: {fileID: 434381175998248516}
   - component: {fileID: 6142411307453215208}
+  - component: {fileID: 7813689321092849852}
   m_Layer: 0
   m_Name: BarFill
   m_TagString: Untagged
@@ -75,6 +76,21 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7813689321092849852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627724056809747865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4429fffa0851e9e47b503f0f69e1c395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageReceived: 0
+  barFill: {fileID: 6142411307453215208}
+  harlequin: {fileID: 7328057357579009238}
 --- !u!1 &2521555884884564378
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +240,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 631ecc45adda9584194760f5d8a5884f, type: 2}
+  _reputation: 500
   _animator: {fileID: 1859865922761525015}
+  _objectHolder: {fileID: 0}
 --- !u!1 &7751488017336244200
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1193,6 +1193,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a5e3c050441fad343abf4f4f4a79bfe6, type: 3}
   m_PrefabInstance: {fileID: 251060571}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &254103859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7813689321092849852, guid: ca585823f298c584580a462ac281d569, type: 3}
+  m_PrefabInstance: {fileID: 829929140368207225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4429fffa0851e9e47b503f0f69e1c395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &264208286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4452,6 +4463,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df2422b8d1d018443a5b9f8d911bcf52, type: 3}
   m_PrefabInstance: {fileID: 794636148}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &797105471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4156173060506787175, guid: 676e785b59be63a409fe84fc32831568, type: 3}
+  m_PrefabInstance: {fileID: 1509628893309965690}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2a765faa8660a46b99278b6ecfb1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &798479680
 GameObject:
   m_ObjectHideFlags: 0
@@ -5263,6 +5285,8 @@ MonoBehaviour:
   _player: {fileID: 567842185}
   _enemyInteractables: {fileID: 2005086469}
   _playerInteractables: {fileID: 561502143}
+  harlequinBar: {fileID: 254103859}
+  playerBar: {fileID: 797105471}
 --- !u!114 &990716119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9365,13 +9389,7 @@ PrefabInstance:
       objectReference: {fileID: 9000000, guid: 2ed39a7cf37bc8a4aba2778b7e06ee4b, type: 3}
     - target: {fileID: 1859865922761525015, guid: ca585823f298c584580a462ac281d569, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandIndex1'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
-        'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
-        'mixamorig:RightFoot'\n\tTransform 'mixamorig:Head'\n\tand more ...\n\tFrom
-        animation clip 'Falling To Roll'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1859865922761525015, guid: ca585823f298c584580a462ac281d569, type: 3}
       propertyPath: m_ApplyRootMotion
