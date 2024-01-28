@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     {
         DeactivateAllObjects();
         PlayGame();
-        _fruitsParticles.Stop();
         InvokeRepeating("SpawnFruits", 3.0f, 5.0f);
     }
 
@@ -121,18 +120,52 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void onPlyWin()
+    {
+        if (harlequinBar.GetReputation() <= 0)
+        {
+            print("ENEMY DEAD");
+            _enemyCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8);
+            EventManager.OnPlayerWon();
+        }
+        else
+        {
+            _enemyCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
+        }
+    }
+    public void onEnmWin()
+    {
+        if (playerBar.GetReputation() <= 0)
+        {
+            print("PLAYER DEAD");
+            _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8);
+            EventManager.OnPlayerLost();
+        }
+        else
+        {
+            _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
+        }
+    }
+    public HarlequinBar harlequinBar;
+    public PlayerBar playerBar;
     private void PlayerWins()
     {
-
-        _enemyCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
+        //print("Player wins -> Damage " + _playerCurrentCard.GetDamage);
+        harlequinBar.DoDamage(_playerCurrentCard.GetDamage);
         EventManager.OnHandWon();
+        //print(_playerCurrentCard.GetDamage);
+        Invoke("onPlyWin", 0.2f);
+
     }
 
     private void PlayerLose()
     {
-        AudioManager.GetInstance.PlaySound(AudioManager.AudioList.Abucheo);
-        _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
+        //print("Player wins -> Damage " + _enemyCurrentCard.GetDamage);
+        playerBar.DoDamage(_enemyCurrentCard.GetDamage);
+        //print(_enemyCurrentCard.GetDamage);
         EventManager.OnHandLost();
+        Invoke("onEnmWin", 0.2f);
+
     }
 
     private void StartNextBattle()

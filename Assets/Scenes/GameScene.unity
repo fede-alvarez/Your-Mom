@@ -10484,6 +10484,8 @@ MonoBehaviour:
   _enemyInteractables: {fileID: 2005086469}
   _playerInteractables: {fileID: 561502143}
   _fruitsParticles: {fileID: 855674428}
+  harlequinBar: {fileID: 829929140368207226}
+  playerBar: {fileID: 1509628893309965691}
 --- !u!114 &990716119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14953,6 +14955,17 @@ PrefabInstance:
       addedObject: {fileID: 1277061381}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca585823f298c584580a462ac281d569, type: 3}
+--- !u!114 &829929140368207226 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7813689321092849852, guid: ca585823f298c584580a462ac281d569, type: 3}
+  m_PrefabInstance: {fileID: 829929140368207225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4429fffa0851e9e47b503f0f69e1c395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1509628893309965690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15006,6 +15019,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7653005802524359676, guid: 676e785b59be63a409fe84fc32831568, type: 3}
+      propertyPath: _reputation
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653005802524359676, guid: 676e785b59be63a409fe84fc32831568, type: 3}
       propertyPath: _objectHolder
       value: 
       objectReference: {fileID: 54449091}
@@ -15022,6 +15039,17 @@ PrefabInstance:
       addedObject: {fileID: 54449091}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 676e785b59be63a409fe84fc32831568, type: 3}
+--- !u!114 &1509628893309965691 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4156173060506787175, guid: 676e785b59be63a409fe84fc32831568, type: 3}
+  m_PrefabInstance: {fileID: 1509628893309965690}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2a765faa8660a46b99278b6ecfb1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
