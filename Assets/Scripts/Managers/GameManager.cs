@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private CardDeck _gameDeck;
     [SerializeField] private BaseEnemy _currentEnemy;
+    [SerializeField] private Player _player;
     [SerializeField] private Transform _enemyInteractables;
+    [SerializeField] private Transform _playerInteractables;
 
     private Turn _currentTurn = Turn.Player;
     private bool _inBattle = false;
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        DeactivateAllObjects();
         PlayGame();
     }
 
@@ -50,7 +53,6 @@ public class GameManager : MonoBehaviour
             // Check by Value
             if (_enemyCurrentCard.GetDamage > _playerCurrentCard.GetDamage)
             {
-                //print("Enemy WINS");
                 PlayerLose();
             }
             else if (_enemyCurrentCard.GetDamage == _playerCurrentCard.GetDamage)
@@ -119,41 +121,111 @@ public class GameManager : MonoBehaviour
 
         // Object animation
         SetProperObjectAnimation();
+        SetPlayerObjectAnimation();
 
         GameManager.GetInstance.SetPlayersTurn();
+
+        GetRandomPlayerCard();
     }
 
     private void SetProperObjectAnimation()
     {
+        //DeactivateAllObjects();
+        Harlequin enemy = (_currentEnemy as Harlequin);
+
         switch (_enemyCurrentCard.CardName)
         {
             case "Actually":
+                enemy.FuckYou();
                 break;
             case "Bottle":
-                (_currentEnemy as Harlequin).ActivateObject(Harlequin.Object.Bottle);
+                enemy.ActivateObject(Harlequin.Object.Bottle);
+                enemy.Throw();
                 break;
             case "Crouch":
+                enemy.Crouch();
                 break;
             case "FYou":
+                enemy.FuckYou();
                 break;
             case "NoYou":
                 break;
             case "Pie":
-                (_currentEnemy as Harlequin).ActivateObject(Harlequin.Object.Pie);
+                enemy.ActivateObject(Harlequin.Object.Pie);
+                enemy.Throw();
                 break;
             case "Punch":
                 _enemyInteractables.GetChild(0).gameObject.SetActive(true);
+                Invoke("DeactivateAllObjects", 3.0f);
                 break;
             case "Roll":
+                enemy.Roll();
                 break;
             case "Your mom":
+                enemy.FuckYou();
                 break;
+        }
+    }
+
+    private void SetPlayerObjectAnimation()
+    {
+        //DeactivateAllObjects();
+
+        switch (_playerCurrentCard.CardName)
+        {
+            case "Actually":
+                _player.FuckYou();
+                break;
+            case "Bottle":
+                _player.ActivateObject(Player.Object.Bottle);
+                _player.Throw();
+                break;
+            case "Crouch":
+                _player.Crouch();
+                break;
+            case "FYou":
+                _player.FuckYou();
+                break;
+            case "NoYou":
+                break;
+            case "Pie":
+                _player.ActivateObject(Player.Object.Pie);
+                _player.Throw();
+                break;
+            case "Punch":
+                _playerInteractables.GetChild(0).gameObject.SetActive(true);
+                Invoke("DeactivateAllObjects", 3.0f);
+                break;
+            case "Roll":
+                _player.Roll();
+                break;
+            case "Your mom":
+                _player.FuckYou();
+                break;
+        }
+    }
+
+    private void DeactivateAllObjects()
+    {
+        foreach (Transform enemyItem in _enemyInteractables)
+        {
+            enemyItem.gameObject.SetActive(false);
+        }
+
+        foreach (Transform playerItem in _playerInteractables)
+        {
+            playerItem.gameObject.SetActive(false);
         }
     }
 
     public void GetRandomCard()
     {
         _enemyCurrentCard = _gameDeck.DrawSingleCard();
+    }
+
+    public void GetRandomPlayerCard()
+    {
+        _gameDeck.DrawCard(_playerCurrentCard.GetIndex);
     }
 
     public void SetPlayersCard(Card card)

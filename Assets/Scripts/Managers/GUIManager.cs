@@ -16,7 +16,7 @@ public class GUIManager : MonoBehaviour
 
     private void OnTurnChanged(GameManager.Turn turn)
     {
-        print("TURN CHANGED");
+        //print("TURN CHANGED");
         _currentTurn.text = turn.ToString();
     }
 

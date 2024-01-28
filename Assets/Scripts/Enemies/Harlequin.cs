@@ -30,4 +30,19 @@ public class Harlequin : BaseEnemy
     {
         _animator.SetTrigger("Throw");
     }
+
+    public void Crouch()
+    {
+        _animator.SetTrigger("Crouch");
+    }
+
+    public void FuckYou()
+    {
+        _animator.SetTrigger("FuckYou");
+    }
+
+    public void Roll()
+    {
+        _animator.SetTrigger("Roll");
+    }
 }

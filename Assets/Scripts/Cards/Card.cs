@@ -11,6 +11,7 @@ public class Card : MonoBehaviour
     private float _initPositionY;
     private bool _isSelected = false;
     private int _randomDamage = 10;
+    private int _cardIndex;
 
     void Start()
     {
@@ -40,10 +41,10 @@ public class Card : MonoBehaviour
     private void Use()
     {
         if (_isSelected) return;
-        //print(gameObject.name);
-        GameManager.GetInstance.SetPlayersCard(this);
         _isSelected = true;
-        transform.DOMoveY(0.3f, 0.3f).SetRelative().OnComplete(Deactivate);
+
+        GameManager.GetInstance.SetPlayersCard(this);
+        transform.DOMoveY(0.2f, 0.3f).SetRelative().OnComplete(Deactivate);
     }
 
     private void Deactivate()
@@ -59,7 +60,13 @@ public class Card : MonoBehaviour
         _cardDamageLabel.text = _randomDamage.ToString();
     }
 
+    public void SetIndex(int index)
+    {
+        _cardIndex = index;
+    }
+
     public int GetDamage => _randomDamage;
+    public int GetIndex => _cardIndex;
 
     public string CardName => _cardStats.CardName;
     public CardDeck.CardTypes CardType => _cardStats.CardType;

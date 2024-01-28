@@ -53,13 +53,17 @@ public class CardDeck : MonoBehaviour
         firstCardInstance.transform.Rotate(rotation);
         _deck.Add(firstCardInstance);
 
+        firstCardInstance.SetIndex(0);
+
         for (int i = 1; i < _totalCards; i++)
         {
+
             float xPos = i * cardSpacing;
             Vector3 cardPosition = decko.transform.position + new Vector3(xPos, 0f, 0f);
             Card cardPrefab = _cardTypes[Random.Range(0, _cardTypes.Count)];
             Card cardInstance = Instantiate(cardPrefab, cardPosition, Quaternion.identity);
             cardInstance.transform.Rotate(rotation);
+            cardInstance.SetIndex(i);
 
             cardInstance.transform.SetParent(decko.transform);
 
@@ -98,14 +102,18 @@ public class CardDeck : MonoBehaviour
         }
     }
 
-    public Card DrawCard()
+    public Card DrawCard(int pos)
     {
-        if (_deck.Count == 0) return null;
+        float xPos = pos * cardSpacing;
 
-        Card card = _deck[0];
-        _deck.RemoveAt(0);
-        _discardPile.Add(card);
+        Card firstCardPrefab = _cardTypes[Random.Range(0, _cardTypes.Count)];
+        Vector3 firstCardPosition = decko.transform.position - new Vector3(0f, 0f, xPos);
+        Card firstCardInstance = Instantiate(firstCardPrefab, firstCardPosition, decko.transform.rotation);
+        firstCardInstance.transform.SetParent(decko.transform);
+        firstCardInstance.transform.Rotate(rotation);
+        firstCardInstance.SetIndex(pos);
+        _deck.Add(firstCardInstance);
 
-        return card;
+        return firstCardInstance;
     }
 }
