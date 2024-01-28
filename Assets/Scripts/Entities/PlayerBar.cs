@@ -9,7 +9,7 @@ public class PlayerBar : MonoBehaviour
     public Image barFill;
     public Player player;
     private int reputation;
-
+    private int maxRep;
     private float newRep;
     private float repu;
     public float GetReputation()
@@ -28,6 +28,7 @@ public class PlayerBar : MonoBehaviour
         if (player != null)
         {
             reputation = player.GetReputation();
+            maxRep = reputation;
         }
     }
 
@@ -37,9 +38,8 @@ public class PlayerBar : MonoBehaviour
 
         if (damageReceived <= 0) return;
         reputation = player.GetReputation();
-
         int z = reputation - damageReceived;
-        newRep = (z * 100) / reputation;
+        newRep = (z * 100) / maxRep;
         player.SetReputation(z);
         repu = z;
         barFill.DOFillAmount(newRep / 100, 0.3f);

@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
     public PlayerBar playerBar;
     private void PlayerWins()
     {
-        print("Player wins -> Damage " + _playerCurrentCard.GetDamage);
+        //print("Player wins -> Damage " + _playerCurrentCard.GetDamage);
         harlequinBar.DoDamage(_playerCurrentCard.GetDamage);
         //print(_playerCurrentCard.GetDamage);
         Invoke("onPlyWin", 0.2f);
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
 
     private void PlayerLose()
     {
-        print("Player wins -> Damage " + _enemyCurrentCard.GetDamage);
+        //print("Player wins -> Damage " + _enemyCurrentCard.GetDamage);
         playerBar.DoDamage(_enemyCurrentCard.GetDamage);
         //print(_enemyCurrentCard.GetDamage);
         Invoke("onEnmWin", 0.2f);

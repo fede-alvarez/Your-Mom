@@ -11,7 +11,7 @@ public class HarlequinBar : MonoBehaviour
     public Image barFill;
     public Harlequin harlequin;
     private int reputation;
-
+    private int maxRep;
     private float newRep;
     private float repu;
 
@@ -30,6 +30,7 @@ public class HarlequinBar : MonoBehaviour
         if (harlequin != null)
         {
             reputation = harlequin.GetReputation();
+            maxRep = reputation;
         }
     }
 
@@ -40,9 +41,8 @@ public class HarlequinBar : MonoBehaviour
         if (damageReceived <= 0) return;
 
         reputation = harlequin.GetReputation();
-
         int z = reputation - damageReceived;
-        newRep = (z * 100) / reputation;
+        newRep = (z * 100) / maxRep;
         harlequin.SetReputation(z);
         repu = z;
         barFill.DOFillAmount(newRep / 100, 0.3f);
