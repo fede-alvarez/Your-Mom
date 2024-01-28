@@ -22,7 +22,10 @@ public static class EventManager
     public static event UnityAction PlayerWon;
     public static void OnPlayerWon() => PlayerWon?.Invoke();
 
-    public static event UnityAction ThrowFruit;
-    public static void OnThrowFruit() => ThrowFruit?.Invoke();
+    public static event UnityAction HandWon;
+    public static void OnHandWon() => HandWon?.Invoke();
+
+    public static event UnityAction HandLost;
+    public static void OnHandLost() => HandLost?.Invoke();
     #endregion
 }

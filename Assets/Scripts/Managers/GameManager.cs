@@ -125,12 +125,14 @@ public class GameManager : MonoBehaviour
     {
 
         _enemyCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
+        EventManager.OnHandWon();
     }
 
     private void PlayerLose()
     {
         AudioManager.GetInstance.PlaySound(AudioManager.AudioList.Abucheo);
         _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
+        EventManager.OnHandLost();
     }
 
     private void StartNextBattle()
