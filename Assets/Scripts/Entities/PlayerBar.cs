@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerBar : MonoBehaviour
 {
@@ -13,7 +12,8 @@ public class PlayerBar : MonoBehaviour
 
     private float newRep;
     private float repu;
-    public float GetReputation() {
+    public float GetReputation()
+    {
         print("PLAYER  health in number: " + repu + "health in percentage: " + newRep);
         return repu;
     }
@@ -21,9 +21,6 @@ public class PlayerBar : MonoBehaviour
     private void Awake()
     {
         player = GetComponentInParent<Player>(); // Assuming Player is the script attached to the parent GameObject
-    }
-    public void DoDamage(int newDamage){
-        damageReceived = newDamage;
     }
 
     private void Start()
@@ -34,7 +31,24 @@ public class PlayerBar : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    public void DoDamage(int newDamage)
+    {
+        damageReceived = newDamage;
+
+        if (damageReceived <= 0) return;
+        reputation = player.GetReputation();
+
+        int z = reputation - damageReceived;
+        newRep = (z * 100) / reputation;
+        player.SetReputation(z);
+        repu = z;
+        barFill.DOFillAmount(newRep / 100, 0.3f);
+        damageReceived = 0;
+    }
+
+
+
+    /*
     void Update()
     {
         if (damageReceived > 0){
@@ -53,5 +67,5 @@ public class PlayerBar : MonoBehaviour
             }
         }
         
-    }
+    }*/
 }

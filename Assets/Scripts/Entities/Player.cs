@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
         Pie
     }
 
-    [SerializeField] private int _reputation = 100;
+    [SerializeField] private int _reputation = 1000;
     public int GetReputation()
     {
         return _reputation;

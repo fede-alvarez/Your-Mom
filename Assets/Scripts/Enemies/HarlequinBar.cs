@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class HarlequinBar : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class HarlequinBar : MonoBehaviour
     private float newRep;
     private float repu;
 
-    public float GetReputation() {
+    public float GetReputation()
+    {
         print("HARLEQUIN  health in number: " + repu + "health in number: " + newRep);
         return repu;
     }
@@ -31,11 +33,23 @@ public class HarlequinBar : MonoBehaviour
         }
     }
 
-    public void DoDamage(int newDamage){
+    public void DoDamage(int newDamage)
+    {
         damageReceived = newDamage;
+
+        if (damageReceived <= 0) return;
+
+        reputation = harlequin.GetReputation();
+
+        int z = reputation - damageReceived;
+        newRep = (z * 100) / reputation;
+        harlequin.SetReputation(z);
+        repu = z;
+        barFill.DOFillAmount(newRep / 100, 0.3f);
+        damageReceived = 0;
     }
 
-    // Update is called once per frame
+    /*
     void Update()
     {
         if (damageReceived > 0){
@@ -54,6 +68,5 @@ public class HarlequinBar : MonoBehaviour
             }
             
         }
-        
-    }
+    }*/
 }

@@ -104,40 +104,50 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void onPlyWin() {
-        if (harlequinBar.GetReputation() <= 0){
+    public void onPlyWin()
+    {
+        if (harlequinBar.GetReputation() <= 0)
+        {
             print("ENEMY DEAD");
             _enemyCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8);
             EventManager.OnPlayerWon();
-        }else{
+        }
+        else
+        {
             _enemyCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
         }
     }
-    public void onEnmWin() {
-        if (playerBar.GetReputation() <= 0){
+    public void onEnmWin()
+    {
+        if (playerBar.GetReputation() <= 0)
+        {
             print("PLAYER DEAD");
             _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8);
             EventManager.OnPlayerLost();
-        }else {
-            _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);    
+        }
+        else
+        {
+            _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
         }
     }
     public HarlequinBar harlequinBar;
     public PlayerBar playerBar;
     private void PlayerWins()
-    {   
+    {
+        print("Player wins -> Damage " + _playerCurrentCard.GetDamage);
         harlequinBar.DoDamage(_playerCurrentCard.GetDamage);
-        print(_playerCurrentCard.GetDamage);
-        Invoke("onPlyWin",0.2f);
-        
+        //print(_playerCurrentCard.GetDamage);
+        Invoke("onPlyWin", 0.2f);
+
     }
 
     private void PlayerLose()
     {
+        print("Player wins -> Damage " + _enemyCurrentCard.GetDamage);
         playerBar.DoDamage(_enemyCurrentCard.GetDamage);
-        print(_enemyCurrentCard.GetDamage);
-        Invoke("onEnmWin",0.2f);
-        
+        //print(_enemyCurrentCard.GetDamage);
+        Invoke("onEnmWin", 0.2f);
+
     }
 
     private void StartNextBattle()
