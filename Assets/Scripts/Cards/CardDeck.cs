@@ -8,7 +8,8 @@ public class CardDeck : MonoBehaviour
     {
         Physical,
         Mental,
-        Elusive
+        Elusive,
+        Special
     }
 
     [SerializeField] private List<Card> _cardTypes = new List<Card>();
