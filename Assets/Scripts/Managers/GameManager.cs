@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
 
     private void SpawnFruits()
     {
+        AudioManager.GetInstance.PlaySound(AudioManager.AudioList.Risa, true);
+        AudioManager.GetInstance.PlaySound(AudioManager.AudioList.Aplauso, true);
+
         _fruitsParticles.Play();
         Invoke("StopFruits", Random.Range(1, 3));
     }
