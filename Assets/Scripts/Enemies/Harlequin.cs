@@ -2,12 +2,28 @@ using UnityEngine;
 
 public class Harlequin : BaseEnemy
 {
-    [SerializeField] private Animator _animator;
-
-
-    void Start()
+    public enum Object
     {
-        //Invoke("Throw", 2.0f);
+        StopSign,
+        Bottle,
+        Pie
+    }
+
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Transform _objectHolder;
+
+    public void ActivateObject(Object obj)
+    {
+        DeactivateObjects();
+        _objectHolder.GetChild((int)obj).gameObject.SetActive(true);
+    }
+
+    private void DeactivateObjects()
+    {
+        foreach (Transform child in _objectHolder)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
 
     public void Throw()

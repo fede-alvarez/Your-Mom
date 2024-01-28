@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crouch
   m_EditorClassIdentifier: 
   CardName: Crouch
-  CardType: 0
+  CardType: 2
   Damage: 1
   Cost: 1
   description: 

@@ -6,6 +6,9 @@ public static class EventManager
     #region Cards
     public static event UnityAction DrawCard;
     public static void OnDrawCard() => DrawCard?.Invoke();
+
+    public static event UnityAction CardPlayed;
+    public static void OnCardPlayed() => CardPlayed?.Invoke();
     #endregion
 
     #region General

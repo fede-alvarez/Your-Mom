@@ -10,11 +10,12 @@ public class Card : MonoBehaviour
 
     private float _initPositionY;
     private bool _isSelected = false;
+    private int _randomDamage = 10;
 
     void Start()
     {
         _initPositionY = transform.position.y;
-
+        _randomDamage = Mathf.CeilToInt(Random.Range(0, 1.0f) * 10) * 10;
         UpdateStats();
     }
 
@@ -39,20 +40,27 @@ public class Card : MonoBehaviour
     private void Use()
     {
         if (_isSelected) return;
-        print(gameObject.name);
+        //print(gameObject.name);
+        GameManager.GetInstance.SetPlayersCard(this);
         _isSelected = true;
         transform.DOMoveY(0.3f, 0.3f).SetRelative().OnComplete(Deactivate);
     }
 
     private void Deactivate()
     {
-        gameObject.SetActive(false);
+        EventManager.OnCardPlayed();
+        GameManager.GetInstance.SetEnemysTurn();
+        GameManager.GetInstance.SetBattleMode();
+        //gameObject.SetActive(false);
     }
 
     private void UpdateStats()
     {
-        _cardDamageLabel.text = _cardStats.Damage.ToString();
+        _cardDamageLabel.text = _randomDamage.ToString();
     }
 
+    public int GetDamage => _randomDamage;
+
+    public string CardName => _cardStats.CardName;
     public CardDeck.CardTypes CardType => _cardStats.CardType;
 }

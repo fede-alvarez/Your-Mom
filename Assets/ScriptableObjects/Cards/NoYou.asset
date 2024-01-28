@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NoYou
   m_EditorClassIdentifier: 
   CardName: NoYou
-  CardType: 0
+  CardType: 1
   Damage: 1
   Cost: 1
   description: 

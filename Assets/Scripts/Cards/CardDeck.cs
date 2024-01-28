@@ -29,6 +29,7 @@ public class CardDeck : MonoBehaviour
         }
     }
     public GameObject decko; // Reference to the parent GameObject
+    [SerializeField] private Transform _enemyDeckContainer;
     float cardSpacing = 0.35f;
 
     public Vector3 rotation = new Vector3(0f, 180f, 0f);
@@ -46,7 +47,8 @@ public class CardDeck : MonoBehaviour
 
 
         Card firstCardPrefab = _cardTypes[Random.Range(0, _cardTypes.Count)];
-        Card firstCardInstance = Instantiate(firstCardPrefab, transform.position, Quaternion.identity);
+        Vector3 firstCardPosition = decko.transform.position + new Vector3(0, 0f, 0f);
+        Card firstCardInstance = Instantiate(firstCardPrefab, firstCardPosition, Quaternion.identity);
         firstCardInstance.transform.SetParent(decko.transform);
         firstCardInstance.transform.Rotate(rotation);
         _deck.Add(firstCardInstance);
@@ -55,7 +57,6 @@ public class CardDeck : MonoBehaviour
         {
             float xPos = i * cardSpacing;
             Vector3 cardPosition = decko.transform.position + new Vector3(xPos, 0f, 0f);
-
             Card cardPrefab = _cardTypes[Random.Range(0, _cardTypes.Count)];
             Card cardInstance = Instantiate(cardPrefab, cardPosition, Quaternion.identity);
             cardInstance.transform.Rotate(rotation);
@@ -63,9 +64,20 @@ public class CardDeck : MonoBehaviour
             cardInstance.transform.SetParent(decko.transform);
 
             _deck.Add(cardInstance);
-
         }
+
         decko.transform.Rotate(deckoRotation);
+    }
+
+    public Card DrawSingleCard()
+    {
+        Card firstCardPrefab = _cardTypes[Random.Range(0, _cardTypes.Count)];
+        Vector3 firstCardPosition = _enemyDeckContainer.position + new Vector3(0, 0f, 0f);
+        Card firstCardInstance = Instantiate(firstCardPrefab, firstCardPosition, Quaternion.identity);
+        firstCardInstance.transform.SetParent(_enemyDeckContainer);
+        firstCardInstance.transform.Rotate(new Vector3(0f, 90f, 0f));
+
+        return firstCardInstance;
     }
 
 
