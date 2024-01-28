@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Transform _enemyInteractables;
     [SerializeField] private Transform _playerInteractables;
+    [SerializeField] private ParticleSystem _fruitsParticles;
 
     private Turn _currentTurn = Turn.Player;
     private bool _inBattle = false;
@@ -38,6 +39,19 @@ public class GameManager : MonoBehaviour
     {
         DeactivateAllObjects();
         PlayGame();
+        _fruitsParticles.Stop();
+        InvokeRepeating("SpawnFruits", 3.0f, 5.0f);
+    }
+
+    private void SpawnFruits()
+    {
+        _fruitsParticles.Play();
+        Invoke("StopFruits", Random.Range(1, 3));
+    }
+
+    private void StopFruits()
+    {
+        _fruitsParticles.Stop();
     }
 
     public void SetBattleMode()

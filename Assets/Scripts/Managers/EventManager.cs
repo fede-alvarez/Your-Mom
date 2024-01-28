@@ -21,5 +21,8 @@ public static class EventManager
 
     public static event UnityAction PlayerWon;
     public static void OnPlayerWon() => PlayerWon?.Invoke();
+
+    public static event UnityAction ThrowFruit;
+    public static void OnThrowFruit() => ThrowFruit?.Invoke();
     #endregion
 }
