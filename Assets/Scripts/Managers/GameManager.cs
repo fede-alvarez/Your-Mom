@@ -255,5 +255,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsPCTurn => _currentTurn == Turn.PC;
 
+    public Player GetPlayer => _player;
+
     public static GameManager GetInstance => _instance;
 }

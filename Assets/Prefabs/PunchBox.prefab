@@ -595,6 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4813311351188233469}
   - component: {fileID: 3838401302918013490}
+  - component: {fileID: 667180556134214668}
   m_Layer: 0
   m_Name: PunchBox
   m_TagString: Untagged
@@ -647,6 +648,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &667180556134214668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8514168325417490017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9040ae32496800c4c89fefc1be8d55af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8776022938860618411
 GameObject:
   m_ObjectHideFlags: 0

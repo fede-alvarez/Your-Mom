@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     {
         if (_isDead) return;
 
+        _animator.SetTrigger("Damage");
         _reputation -= amount;
 
         if (_reputation <= 0)
