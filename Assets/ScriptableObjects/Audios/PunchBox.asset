@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PunchBox
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: ee7b4ac2bab7e0840a4a68147d39fea7, type: 3}
+  - {fileID: 8300000, guid: 7641996718594c84e97d3c007b679a27, type: 3}
   isMusic: 0
   volume: {x: 1, y: 1}
-  pitch: {x: 1, y: 1}
+  pitch: {x: 1.5, y: 1.5}

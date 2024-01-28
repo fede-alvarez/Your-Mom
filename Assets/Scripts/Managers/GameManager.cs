@@ -123,11 +123,13 @@ public class GameManager : MonoBehaviour
 
     private void PlayerWins()
     {
+
         _enemyCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
     }
 
     private void PlayerLose()
     {
+        AudioManager.GetInstance.PlaySound(AudioManager.AudioList.Abucheo);
         _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
     }
 

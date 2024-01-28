@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fist
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: cab045d293e74d2468fb394301cf20ab, type: 3}
+  - {fileID: 8300000, guid: c44d31848de3ecc4a92237206a3a09ae, type: 3}
   isMusic: 0
   volume: {x: 1, y: 1}
-  pitch: {x: 1, y: 1}
+  pitch: {x: 0.9, y: 1.1}
