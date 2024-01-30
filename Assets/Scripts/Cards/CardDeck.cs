@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CardDeck : MonoBehaviour
 {
@@ -107,11 +108,16 @@ public class CardDeck : MonoBehaviour
         float xPos = pos * cardSpacing;
 
         Card firstCardPrefab = _cardTypes[Random.Range(0, _cardTypes.Count)];
-        Vector3 firstCardPosition = decko.transform.position - new Vector3(0f, 0f, xPos);
+        Vector3 firstCardPosition = decko.transform.position - new Vector3(0f, 0, xPos);
         Card firstCardInstance = Instantiate(firstCardPrefab, firstCardPosition, decko.transform.rotation);
         firstCardInstance.transform.SetParent(decko.transform);
         firstCardInstance.transform.Rotate(rotation);
         firstCardInstance.SetIndex(pos);
+
+        Vector3 cardPos = firstCardInstance.transform.position;
+        //print(cardPos);
+        //firstCardInstance.transform.DOMoveY(0.3f, 0.2f).SetRelative();
+
         _deck.Add(firstCardInstance);
 
         return firstCardInstance;

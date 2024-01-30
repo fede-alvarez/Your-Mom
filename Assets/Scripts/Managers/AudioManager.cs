@@ -13,7 +13,8 @@ public class AudioManager : MonoBehaviour
         Punio,
         Risa,
         Pastel,
-        CajaSorpresa
+        CajaSorpresa,
+        CardHover
     }
 
     [SerializeField] private List<AudioScriptable> _audioList;
@@ -21,8 +22,9 @@ public class AudioManager : MonoBehaviour
     [Header("Sources")]
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _soundSource;
-    [Header("Mixer")]
+    [SerializeField] private AudioSource _uiSoundSource;
 
+    [Header("Mixer")]
     [SerializeField] private AudioMixer _mixer;
     private bool _isFading = false;
     private bool _isPaused = false;
@@ -40,6 +42,19 @@ public class AudioManager : MonoBehaviour
     private void OnGamePaused(bool state, bool other)
     {
         _isPaused = state;
+    }
+
+    public void PlayUISound(AudioList audioItem, bool randomSound = false)
+    {
+        if (_isPaused) return;
+        AudioScriptable audioScript = _audioList[(int)audioItem];
+        if (!audioScript) return;
+
+        _uiSoundSource.volume = Random.Range(audioScript.volume.x, audioScript.volume.y);
+        _uiSoundSource.pitch = Random.Range(audioScript.pitch.x, audioScript.pitch.y);
+
+        AudioClip clip = (randomSound) ? audioScript.GetRandom() : audioScript.Get(0);
+        _uiSoundSource.PlayOneShot(clip);
     }
 
     public void PlaySound(AudioList audioItem, bool randomSound = false)

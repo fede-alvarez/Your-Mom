@@ -5,6 +5,8 @@ using DG.Tweening;
 public class Card : MonoBehaviour
 {
     [SerializeField] private CardStats _cardStats;
+    [SerializeField] private SpriteRenderer _cardSprite;
+
     [Header("GUI")]
     [SerializeField] private TMP_Text _cardDamageLabel;
 
@@ -20,15 +22,21 @@ public class Card : MonoBehaviour
         UpdateStats();
     }
 
+    public void Flash()
+    {
+        _cardSprite.DOColor(Color.red, 0.15f).SetInverted();
+    }
+
     void OnMouseEnter()
     {
-        if (_isSelected) return;
+        if (_isSelected || GameManager.GetInstance.IsPCTurn) return;
         transform.DOMoveY(0.1f, 0.3f).SetRelative();
+        AudioManager.GetInstance.PlayUISound(AudioManager.AudioList.CardHover);
     }
 
     void OnMouseExit()
     {
-        if (_isSelected) return;
+        if (_isSelected || GameManager.GetInstance.IsPCTurn) return;
         transform.DOMoveY(_initPositionY, 0.3f);
     }
 
@@ -44,12 +52,16 @@ public class Card : MonoBehaviour
         _isSelected = true;
 
         GameManager.GetInstance.SetPlayersCard(this);
-        transform.DOMoveY(0.2f, 0.3f).SetRelative().OnComplete(Deactivate);
+
+        Transform deckPosition = GameManager.GetInstance.GetPlayerCardFinalPosition;
+        transform.DOMove(deckPosition.position, 0.4f).OnComplete(Deactivate);
+        //transform.DOMoveY(0.2f, 0.3f).SetRelative().OnComplete(Deactivate);
     }
 
     private void Deactivate()
     {
         EventManager.OnCardPlayed();
+        //print("Enemys Turn");
         GameManager.GetInstance.SetEnemysTurn();
         GameManager.GetInstance.SetBattleMode();
         //gameObject.SetActive(false);

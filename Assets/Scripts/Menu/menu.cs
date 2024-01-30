@@ -16,17 +16,18 @@ public class menu : MonoBehaviour
     public AudioSource FXaudioSource;
     public GameObject OptionsPanel;
     public GameObject MainPanel;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Playfirstlevel()
@@ -37,7 +38,7 @@ public class menu : MonoBehaviour
 
     public void QuitGamel()
     {
-        
+
         FXaudioSource.Play();
         Application.Quit();
     }
@@ -62,26 +63,26 @@ public class menu : MonoBehaviour
             {
                 audioSource.mute = true;
                 MuteText.SetText("Deactivate Audio");
-                
+
             }
             else
             {
                 audioSource.mute = false;
                 MuteText.SetText("Activate Audio");
-                
+
 
             }
             if (FXaudioSource.mute == false)
             {
                 FXaudioSource.mute = true;
                 MuteText.SetText("Deactivate Audio");
-               
+
             }
             else
             {
                 FXaudioSource.mute = false;
                 MuteText.SetText("Activate Audio");
-                
+
 
             }
         }
@@ -89,13 +90,13 @@ public class menu : MonoBehaviour
         {
             if (audioSource.mute == false)
             {
-               
+
                 audioSource.mute = true;
                 MuteText.SetText("Desactivar Audio");
             }
             else
             {
-                
+
                 audioSource.mute = false;
                 MuteText.SetText("Activar Audio");
             }
@@ -106,12 +107,12 @@ public class menu : MonoBehaviour
             }
             else
             {
-               
+
                 FXaudioSource.mute = false;
                 MuteText.SetText("Activar Audio");
             }
         }
-        
+
 
     }
     public void ChangeLanguage()
@@ -123,7 +124,7 @@ public class menu : MonoBehaviour
             OptionsText.SetText("Opciones");
             QuitText.SetText("Salir");
             Optionstitle.SetText("Opciones");
-            MainMenuBTNtext.SetText("Menú Principal");
+            MainMenuBTNtext.SetText("Menï¿½ Principal");
             if (audioSource.mute == false)
             {
                 MuteText.SetText("Desactivar Audio");
@@ -132,7 +133,7 @@ public class menu : MonoBehaviour
             {
                 MuteText.SetText("Activar Audio");
             }
-           
+
         }
         else
         {

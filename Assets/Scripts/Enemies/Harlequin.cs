@@ -3,15 +3,7 @@ using UnityEngine;
 public class Harlequin : BaseEnemy
 {
     [SerializeField] private int _reputation = 100;
-    public int GetReputation()
-    {
-        return _reputation;
-    }
-    public void SetReputation(int re)
-    {
-        print("setting reputation of harlequin to: " + re);
-        _reputation = re;
-    }
+
     public enum Object
     {
         StopSign,
@@ -21,6 +13,11 @@ public class Harlequin : BaseEnemy
 
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _objectHolder;
+
+    void Start()
+    {
+        EventManager.EnemyDamage += DamageAnimation;
+    }
 
     public void ActivateObject(Object obj)
     {
@@ -34,6 +31,11 @@ public class Harlequin : BaseEnemy
         {
             child.gameObject.SetActive(false);
         }
+    }
+
+    public void DamageAnimation()
+    {
+        _animator.SetTrigger("Damage");
     }
 
     public void Throw()
@@ -54,5 +56,20 @@ public class Harlequin : BaseEnemy
     public void Roll()
     {
         _animator.SetTrigger("Roll");
+    }
+
+    public int GetReputation()
+    {
+        return _reputation;
+    }
+    public void SetReputation(int re)
+    {
+        //print("setting reputation of harlequin to: " + re);
+        _reputation = re;
+    }
+
+    void OnDestroy()
+    {
+        EventManager.EnemyDamage -= DamageAnimation;
     }
 }

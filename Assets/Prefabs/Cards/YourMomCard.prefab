@@ -122,6 +122,10 @@ PrefabInstance:
       propertyPath: _cardStats
       value: 
       objectReference: {fileID: 11400000, guid: 43e85ac12fb7bb4448260fec83e1834f, type: 2}
+    - target: {fileID: 499775232814102784, guid: fe5f28f80b1a717478f66bf83d0de2a4, type: 3}
+      propertyPath: _cardSprite
+      value: 
+      objectReference: {fileID: 3129723111780453020}
     - target: {fileID: 1925347725643305812, guid: fe5f28f80b1a717478f66bf83d0de2a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -16,9 +16,11 @@ public class PunchBox : MonoBehaviour
 
     public void Hit()
     {
-        if (GameManager.GetInstance.IsPCTurn) return;
-        print("HIT");
         AudioManager.GetInstance.PlaySound(AudioManager.AudioList.Punio);
-        _player.Damage(4);
+
+        if (transform.parent.name == "EnemyInteractables")
+            EventManager.OnPlayerDamage();
+        else
+            EventManager.OnEnemyDamage();
     }
 }

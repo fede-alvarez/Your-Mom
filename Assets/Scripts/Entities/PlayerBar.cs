@@ -14,7 +14,7 @@ public class PlayerBar : MonoBehaviour
     private float repu;
     public float GetReputation()
     {
-        print("PLAYER  health in number: " + repu + "health in percentage: " + newRep);
+        //print("PLAYER  health in number: " + repu + "health in percentage: " + newRep);
         return repu;
     }
 
@@ -42,30 +42,14 @@ public class PlayerBar : MonoBehaviour
         newRep = (z * 100) / maxRep;
         player.SetReputation(z);
         repu = z;
-        barFill.DOFillAmount(newRep / 100, 0.3f);
+        VisualFX(newRep / 100);
         damageReceived = 0;
     }
 
-
-
-    /*
-    void Update()
+    private void VisualFX(float amount)
     {
-        if (damageReceived > 0){
-            int z = reputation - damageReceived;
-            newRep = (z * 100) / reputation;
-            player.SetReputation(z);
-            repu = z;
-            if(newRep >= 0){
-                repu = z;
-                barFill.fillAmount = newRep / 100;
-                damageReceived = 0;
-            }else {
-                repu = z;
-                barFill.fillAmount = 0;
-                damageReceived = 0;
-            }
-        }
-        
-    }*/
+        barFill.DOFillAmount(amount, 0.3f);
+        //barFill.transform.DOShakeScale(0.2f, 1, 10);
+        barFill.transform.parent.DOShakeScale(0.2f, .8f, 6);
+    }
 }

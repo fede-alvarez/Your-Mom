@@ -10,20 +10,16 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] private int _reputation = 1000;
-    public int GetReputation()
-    {
-        return _reputation;
-    }
 
-    public void SetReputation(int re)
-    {
-        print("setting reputation of player to: " + re);
-        _reputation = re;
-    }
 
     [SerializeField] private Animator _animator;
     [SerializeField] private Transform _objectHolder;
     private bool _isDead = false;
+
+    void Start()
+    {
+        EventManager.PlayerDamage += DamageAnimation;
+    }
 
     public void Damage(int amount)
     {
@@ -50,6 +46,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void DamageAnimation()
+    {
+        _animator.SetTrigger("Damage");
+    }
+
     public void Throw()
     {
         _animator.SetTrigger("Throw");
@@ -68,5 +69,21 @@ public class Player : MonoBehaviour
     public void Roll()
     {
         _animator.SetTrigger("Roll");
+    }
+
+    public int GetReputation()
+    {
+        return _reputation;
+    }
+
+    public void SetReputation(int re)
+    {
+        //print("setting reputation of player to: " + re);
+        _reputation = re;
+    }
+
+    void OnDestroy()
+    {
+        EventManager.PlayerDamage -= DamageAnimation;
     }
 }

@@ -15,11 +15,8 @@ public class HarlequinBar : MonoBehaviour
     private float newRep;
     private float repu;
 
-    public float GetReputation()
-    {
-        print("HARLEQUIN  health in number: " + repu + "health in number: " + newRep);
-        return repu;
-    }
+
+
     private void Awake()
     {
         harlequin = GetComponentInParent<Harlequin>();
@@ -45,28 +42,19 @@ public class HarlequinBar : MonoBehaviour
         newRep = (z * 100) / maxRep;
         harlequin.SetReputation(z);
         repu = z;
-        barFill.DOFillAmount(newRep / 100, 0.3f);
+        VisualFX(newRep / 100);
         damageReceived = 0;
     }
 
-    /*
-    void Update()
+    private void VisualFX(float amount)
     {
-        if (damageReceived > 0){
-            int z = reputation - damageReceived;
-            newRep = (z * 100) / reputation;
-            harlequin.SetReputation(z);
-            repu = z;
-            if(newRep >= 0){
-                repu = z;
-                barFill.fillAmount = newRep / 100;
-                damageReceived = 0;
-            }else {
-                repu = z;
-                barFill.fillAmount = 0;
-                damageReceived = 0;
-            }
-            
-        }
-    }*/
+        barFill.DOFillAmount(amount, 0.3f);
+        barFill.transform.parent.DOShakeScale(0.2f, .8f, 6);
+    }
+
+    public float GetReputation()
+    {
+        //print("HARLEQUIN  health in number: " + repu + "health in number: " + newRep);
+        return repu;
+    }
 }

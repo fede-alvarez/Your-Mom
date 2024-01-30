@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +17,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Transform _enemyInteractables;
     [SerializeField] private Transform _playerInteractables;
+
+    [SerializeField] private Transform _playerCardFinalPosition;
+
     [SerializeField] private ParticleSystem _fruitsParticles;
+
+    public HarlequinBar harlequinBar;
+    public PlayerBar playerBar;
 
     private Turn _currentTurn = Turn.Player;
     private bool _inBattle = false;
@@ -22,6 +31,9 @@ public class GameManager : MonoBehaviour
     private Card _enemyCurrentCard;
     private Card _playerCurrentCard;
 
+    private bool _gamePaused = false;
+
+    private bool _handWon = false;
     private static GameManager _instance;
 
     private void Awake()
@@ -122,6 +134,8 @@ public class GameManager : MonoBehaviour
 
     public void onPlyWin()
     {
+        _handWon = true;
+        _enemyCurrentCard.Flash();
         if (harlequinBar.GetReputation() <= 0)
         {
             print("ENEMY DEAD");
@@ -135,6 +149,9 @@ public class GameManager : MonoBehaviour
     }
     public void onEnmWin()
     {
+        _handWon = false;
+
+        _playerCurrentCard.Flash();
         if (playerBar.GetReputation() <= 0)
         {
             print("PLAYER DEAD");
@@ -146,40 +163,42 @@ public class GameManager : MonoBehaviour
             _playerCurrentCard.transform.DOShakePosition(0.5f, 0.3f, 8).OnComplete(StartNextBattle);
         }
     }
-    public HarlequinBar harlequinBar;
-    public PlayerBar playerBar;
+
     private void PlayerWins()
     {
-        //print("Player wins -> Damage " + _playerCurrentCard.GetDamage);
         harlequinBar.DoDamage(_playerCurrentCard.GetDamage);
         EventManager.OnHandWon();
-        //print(_playerCurrentCard.GetDamage);
         Invoke("onPlyWin", 0.2f);
-
     }
 
     private void PlayerLose()
     {
-        //print("Player wins -> Damage " + _enemyCurrentCard.GetDamage);
         playerBar.DoDamage(_enemyCurrentCard.GetDamage);
-        //print(_enemyCurrentCard.GetDamage);
         EventManager.OnHandLost();
         Invoke("onEnmWin", 0.2f);
-
     }
 
     private void StartNextBattle()
     {
+        StartCoroutine("TurnActions");
+    }
+
+    private IEnumerator TurnActions()
+    {
         Destroy(_enemyCurrentCard.gameObject);
         Destroy(_playerCurrentCard.gameObject);
+        yield return new WaitForSeconds(1.0f);
 
         // Object animation
-        SetProperObjectAnimation();
-        SetPlayerObjectAnimation();
+        if (_handWon)
+            SetPlayerObjectAnimation();
+        else
+            SetProperObjectAnimation();
 
-        GameManager.GetInstance.SetPlayersTurn();
-
+        yield return new WaitForSeconds(0.7f);
         GetRandomPlayerCard();
+        yield return new WaitForSeconds(0.8f);
+        GameManager.GetInstance.SetPlayersTurn();
     }
 
     private void SetProperObjectAnimation()
@@ -272,8 +291,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void GoMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void TogglePause()
+    {
+        _gamePaused = !_gamePaused;
+
+        if (_gamePaused)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+    }
+
     public void GetRandomCard()
     {
+        //print("Get Random Card!");
         _enemyCurrentCard = _gameDeck.DrawSingleCard();
     }
 
@@ -302,7 +342,7 @@ public class GameManager : MonoBehaviour
 
     public void SetEnemysTurn()
     {
-        //print("Enemy Turn");
+        //print("Set Enemy Turn");
         _currentTurn = Turn.PC;
         EventManager.OnTurnChanged(Turn.PC);
     }
@@ -310,6 +350,8 @@ public class GameManager : MonoBehaviour
     public bool IsPCTurn => _currentTurn == Turn.PC;
 
     public Player GetPlayer => _player;
+
+    public Transform GetPlayerCardFinalPosition => _playerCardFinalPosition;
 
     public static GameManager GetInstance => _instance;
 }

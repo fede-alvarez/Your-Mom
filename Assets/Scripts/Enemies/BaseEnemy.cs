@@ -5,7 +5,7 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] private EnemyStats _stats;
     private bool _isDead = false;
 
-    void Start()
+    void Awake()
     {
         EventManager.TurnChanged += OnTurnChanged;
     }
