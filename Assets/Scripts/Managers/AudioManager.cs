@@ -14,7 +14,8 @@ public class AudioManager : MonoBehaviour
         Risa,
         Pastel,
         CajaSorpresa,
-        CardHover
+        CardHover,
+        CardSelected
     }
 
     [SerializeField] private List<AudioScriptable> _audioList;

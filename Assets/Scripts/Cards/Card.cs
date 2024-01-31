@@ -49,6 +49,7 @@ public class Card : MonoBehaviour
     private void Use()
     {
         if (_isSelected) return;
+        AudioManager.GetInstance.PlayUISound(AudioManager.AudioList.CardSelected);
         _isSelected = true;
 
         GameManager.GetInstance.SetPlayersCard(this);
